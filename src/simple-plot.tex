@@ -11,8 +11,6 @@
 \usepackage{amsmath}
 \usepackage{relsize}
 \renewcommand{\_}{\textscale{.7}{\textunderscore}}
-\def\xminimo{1.50}
-\def\xmaximo{1.55}
 \usepackage{tikz-dimline}
 \usepackage{newtxtext}
 \usepackage{newtxmath}
@@ -22,23 +20,23 @@
 
 
 \pgfplotsset
-{	height=8cm,
-	width= 6cm,
-	ytick=\empty,
+{	height=10cm,
+	width= 7cm,
+	ytick={\empty},
 	%xmin=1.50,  xmax=1.55,
 	minor x tick num=1,
 	minor y tick num=1,
 	xtick pos=left,
 	ytick pos=left,
-	xtick distance=1e-2,
-	xlabel ={ Photon Energy (eV) },
+	%xtick distance=1e-2,
+	xlabel ={xlabel-user},
 	every axis/.append style = 
 		{
 			line width = 1.2pt,
 			tick style = {line width=1.2pt,black},
-			every tick label/.append style={scale=1.5},
-			major tick length = 3mm,
-			minor tick length = 1.5mm,
+			every tick label/.append style={scale=1},
+			major tick length = 2mm,
+			minor tick length = 1mm,
 		},
 	every axis plot/.style=
 		{
@@ -49,19 +47,19 @@
 			/pgf/number format/.cd,
 			fixed,
 			fixed zerofill,
-			precision=2,
+			precision=1,
 			/tikz/.cd
 		},
 	every axis x label/.style= 
 		{
 			at={(axis description cs:0.5,-0.08)},
-			scale=1.8
+			scale=1.0
 		},
 	every axis y label/.style= 
 		{
 			at={(axis description cs:-0.05,0.5)},
 			rotate=90,
-			scale=1.8
+			scale=1.0
 		},
 	/pgfplots/legend image code/.code=
 		{%
@@ -93,20 +91,11 @@
 
 \begin{document}
 \begin{tikzpicture}[arrow/.style={{Stealth[length=3mm]}-{Stealth[length=3mm]},line width=0.4mm}]
-\begin{axis}[name=ras,
-	xmin = \xminimo,xmax=\xmaximo,
-    ymin=-13e-4, ymax=11.9e-4,
-	]
-	\addplot[color=Set1-A] table[x index=0,y expr=\thisrowno{1}]
-	\rasuno;
-	\addlegendentry{RAS n-type};
-	\addplot[color=Set1-B] table[x index=0,y expr=\thisrowno{1}]{data1};
-	\addlegendentry{RAS p-type};
-    
+\begin{axis}[scale only axis]
+	\addplot[color-user] table[col sep=comma,x index=0,y expr=\thisrowno{1}]{test-data.dat};
+	\addlegendentry{};
+
 \end{axis}
-
 % \draw[dashed,line width=0.5pt] (cud)--(cup);
-
-
 \end{tikzpicture}
 \end{document}
