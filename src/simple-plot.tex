@@ -1,15 +1,14 @@
 \documentclass[margin=0mm]{standalone}
 
-\input{plots-set.tex}
+\input{plot-set.tex}
 \begin{document}
 \begin{tikzpicture}
 \begin{axis}[scale only axis,
     xlabel={xlabel-user},
     ylabel={ylabel-user}]
-	\addplot[color-user] table[col sep=comma,x index=0,y expr=\thisrowno{1}]{data};
-	\addlegendentry{legen-user};
+	\addplot table[col sep=comma,x index=0,y expr=\thisrowno{1}]{data};
+	%\addlegendentry{legen-user};
 
 \end{axis}
-% \draw[dashed,line width=0.5pt] (cud)--(cup);
 \end{tikzpicture}
 \end{document}

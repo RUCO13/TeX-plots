@@ -1,0 +1,15 @@
+\documentclass[margin=0mm]{standalone}
+
+\input{plot-set.tex}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[scale only axis,
+    xlabel={$x$},
+    ylabel={$y$}]
+	\addplot[b] table[col sep=comma,x index=0,y expr=\thisrowno{1}]{/media/labfiles/ruco/repos/TeX-plots/notebooks/data/test-data.dat};
+	\addlegendentry{first plot};
+
+\end{axis}
+% \draw[dashed,line width=0.5pt] (cud)--(cup);
+\end{tikzpicture}
+\end{document}
